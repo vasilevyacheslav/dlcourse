@@ -101,9 +101,8 @@ class KNN:
         # Using float32 to to save memory - the default is float64
         dists = np.zeros((num_test, num_train), np.float32)
         # TODO: Implement computing all distances with no loops!
-#         train = self.train_X.reshape(1, -1)
-#         test = X.reshape(-1, 1)
-        dists = np.trace(np.abs(X.reshape(-1, 1) - self.train_X.reshape(1, -1)).reshape(2, 5, 4, 5), axis1=2, axis2=3)
+
+        dists = np.sum(np.abs(X[:, None] - self.train_X[None]), axis=2)
         return dists
 
     def predict_labels_binary(self, dists):
@@ -119,11 +118,15 @@ class KNN:
            for every test sample
         '''
         num_test = dists.shape[0]
+        num_train = dists.shape[1]
         pred = np.zeros(num_test, np.bool)
         for i in range(num_test):
-            # TODO: Implement choosing best class based on k
-            # nearest training samples
-            pass
+            ind = np.argsort(dists[i])[:self.k]
+            res = 0
+            for j in ind:
+                res += self.train_y[j]
+            pred[i] = res >= self.k // 2 + 1
+               
         return pred
 
     def predict_labels_multiclass(self, dists):
@@ -139,10 +142,18 @@ class KNN:
            for every test sample
         '''
         num_test = dists.shape[0]
-        num_test = dists.shape[0]
+        num_train = dists.shape[1]
         pred = np.zeros(num_test, np.int)
         for i in range(num_test):
             # TODO: Implement choosing best class based on k
             # nearest training samples
-            pass
+            ind = np.argsort(dists[i])[:self.k]
+            res = []
+            for j in ind:
+                res.append(self.train_y[j])
+            
+            from collections import Counter
+            
+            [(winner, _count)] = Counter(res).most_common(1)
+            pred[i] = winner
         return pred
