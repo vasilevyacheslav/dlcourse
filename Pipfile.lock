@@ -54,10 +54,10 @@
         },
         "decorator": {
             "hashes": [
-                "sha256:33cd704aea07b4c28b3eb2c97d288a06918275dac0ecebdaf1bc8a48d98adb9e",
-                "sha256:cabb249f4710888a2fc0e13e9a16c343d932033718ff62e1e9bc93a9d3a9122b"
+                "sha256:86156361c50488b84a3f148056ea716ca587df2f0de1d34750d35c21312725de",
+                "sha256:f069f3a01830ca754ba5258fde2278454a0b5b79e0d7f5c13b3b97e57d4acff6"
             ],
-            "version": "==4.3.2"
+            "version": "==4.4.0"
         },
         "defusedxml": {
             "hashes": [
@@ -261,10 +261,10 @@
         },
         "notebook": {
             "hashes": [
-                "sha256:9ca7f597ce4f5a24611c589fa320a7af2861f0ca1dc20839129c91ae354453fe",
-                "sha256:c5011449a1a6d9f96bf65c4c2d6713802a21125476312b39c99010ccd7a2e2ed"
+                "sha256:18a98858c0331fb65a60f2ebb6439f8c0c4defd14ca363731b6cabc7f61624b4",
+                "sha256:cc027a62be0f7756e0ef3d2d98458c4d7f4b3566449fb1a05891207f5bd9a1bf"
             ],
-            "version": "==5.7.5"
+            "version": "==5.7.6"
         },
         "numpy": {
             "hashes": [
