@@ -94,7 +94,7 @@ def check_layer_param_gradient(layer, x,
     param = layer.params()[param_name]
     
     if param_name == 'B':
-        initial_w = np.vstack((param.value,)*batch_size)
+        initial_w = np.vstack((param.value.copy(),)*batch_size)
     else:
         initial_w = param.value
 
@@ -134,7 +134,11 @@ def check_model_gradient(model, X, y,
         print("Checking gradient for %s" % param_key)
         param = params[param_key]
         initial_w = param.value
-
+        
+        batch_size = X.shape[0]
+        if 'B' in param_key:
+            initial_w = np.vstack((initial_w.copy(),)*batch_size)
+            
         def helper_func(w):
             param.value = w
             loss = model.compute_loss_and_gradients(X, y)
@@ -143,5 +147,4 @@ def check_model_gradient(model, X, y,
 
         if not check_gradient(helper_func, initial_w, delta, tol):
             return False
-
     return True

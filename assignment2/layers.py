@@ -49,9 +49,12 @@ class Param:
         self.value = value
         self.grad = np.zeros_like(value)
 
-@np.vectorize
-def ReLU(x):
-    return x if x > 0 else 0
+# @np.vectorize
+# def ReLU(x):
+#     return x if x > 0 else 0
+
+def ReLU(X):
+    return (X + np.abs(X)) / 2
 
 
 class ReLULayer:
@@ -91,8 +94,9 @@ class ReLULayer:
 
 class FullyConnectedLayer:
     def __init__(self, n_input, n_output):
-        self.W = Param(0.001 * np.random.randn(n_input, n_output))
-        self.B = Param(0.001 * np.random.randn(1, n_output))
+        self.a = 0.01
+        self.W = Param(self.a * np.random.randn(n_input, n_output))
+        self.B = Param(self.a * np.random.randn(1, n_output))
         self.X = None
 
     def forward(self, X):
