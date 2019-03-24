@@ -11,6 +11,8 @@ jupyter = "*"
 tornado = "==5.1.1"
 scipy = "*"
 matplotlib = "*"
+torch = {file = "https://download.pytorch.org/whl/cu100/torch-1.0.1-cp37-cp37m-win_amd64.whl"}
+torchvision = "*"
 
 [requires]
 python_version = "3.7"

@@ -94,7 +94,7 @@ class ReLULayer:
 
 class FullyConnectedLayer:
     def __init__(self, n_input, n_output):
-        self.a = 0.01
+        self.a = 1 / np.sqrt(n_input / 2)
         self.W = Param(self.a * np.random.randn(n_input, n_output))
         self.B = Param(self.a * np.random.randn(1, n_output))
         self.X = None
